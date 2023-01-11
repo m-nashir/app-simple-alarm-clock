@@ -1,6 +1,7 @@
 const display = document.querySelector('.wrapper h1'),
+content = document.querySelector('.content'),
 selectMenu = document.querySelectorAll('select'),
-setAlarm = document.querySelector('button');
+setAlarmBtn = document.querySelector('button');
 
 for(let i = 12; i > 0; i--) {
     i = i < 10 ? '0' + i : i;
@@ -14,10 +15,10 @@ for(let i = 59; i >= 0; i--) {
     selectMenu[1].firstElementChild.insertAdjacentHTML('afterend', option)
 }
 
-for(let i = 12; i > 0; i--) {
+for(let i = 2; i > 0; i--) {
     let ampm = i == 1 ? 'AM' : 'PM';
     let option = `<option value='${ampm}'>${ampm}</option>`;
-    selectMenu[0].firstElementChild.insertAdjacentHTML('afterend', option)
+    selectMenu[2].firstElementChild.insertAdjacentHTML('afterend', option)
 }
 
 setInterval(() => {
@@ -29,7 +30,7 @@ setInterval(() => {
 
     if (h >= 12){
         h = h - 12;
-        ampm = 'PM'
+        ampm = 'PM';
     }
 
     h = h == 0 ? h = 12 : h;
@@ -38,6 +39,17 @@ setInterval(() => {
     m = m < 10 ? '0' + m : m;
     s = s < 10 ? '0' + s : s;
 
-    display.innerHTML = `${h} : ${m} : ${s} ${ampm}`
+    display.innerText = `${h} : ${m} : ${s} ${ampm}`;
     
-}, 1000)
+}, 1000);
+
+function setAlarm(){
+    let time = `${selectMenu[0].value} : ${selectMenu[1].value} ${selectMenu[2].value}`;
+    if(time.includes('Hour') || time.includes('Minutes') || time.includes('AM/PM')) {
+        return alert('Please set a valid time to set Alarm');
+    }
+    content.classList.add('disable');
+    setAlarmBtn.innerText = 'Clear Alarm'
+}
+
+setAlarmBtn.addEventListener('click', setAlarm)

@@ -38,6 +38,10 @@ body{
     justify-content: space-between;
     width: 100%;
 }
+.wrapper .content.disable {
+    opacity: 0.4;
+    pointer-events: none;
+}
 .wrapper .column {
     border: 1px solid #ccc;
     width: calc(100% / 3 - 5px);
