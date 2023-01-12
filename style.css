@@ -28,7 +28,10 @@ body{
     border-radius: 10px;
 }
 .wrapper img{
-    max-width: 103px;
+    max-width: 102px;
+}
+.wrapper img:hover{
+    transform: scale(1.02);
 }
 .wrapper h1{
     margin: 20px 0;
